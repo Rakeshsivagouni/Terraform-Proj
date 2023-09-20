@@ -54,6 +54,7 @@ resource "aws_route_table" "privateroute-table" {
 #6. Creating public subnets
 resource "aws_subnet" "public-subnet1" {
   vpc_id     = aws_vpc.sample-vpc.id
+  availability_zone = "us-east-1a"
   cidr_block = var.public-subnet-1
   tags = {
     Name : "public-subnet1"
@@ -64,6 +65,7 @@ resource "aws_subnet" "public-subnet1" {
 resource "aws_subnet" "public-subnet2" {
   vpc_id     = aws_vpc.sample-vpc.id
   cidr_block = var.public-subnet-2
+  availability_zone = "us-east-1b"
   tags = {
     Name : "public-subnet2"
     env : "dev"
@@ -73,6 +75,7 @@ resource "aws_subnet" "public-subnet2" {
 resource "aws_subnet" "public-subnet3" {
   vpc_id     = aws_vpc.sample-vpc.id
   cidr_block = var.public-subnet-3
+  availability_zone = "us-east-1c"
   tags = {
     Name : "public-subnet3"
     env : "dev"
@@ -83,6 +86,7 @@ resource "aws_subnet" "public-subnet3" {
 resource "aws_subnet" "private-subnet1" {
   vpc_id     = aws_vpc.sample-vpc.id
   cidr_block = var.private-subnet-1
+  availability_zone = "us-east-1a"
   tags = {
     Name : "private-subnet1"
     env : "dev"
@@ -92,6 +96,7 @@ resource "aws_subnet" "private-subnet1" {
 resource "aws_subnet" "private-subnet2" {
   vpc_id     = aws_vpc.sample-vpc.id
   cidr_block = var.private-subnet-2
+  availability_zone = "us-east-1b"
   tags = {
     Name : "private-subnet2"
     env : "dev"
@@ -101,6 +106,7 @@ resource "aws_subnet" "private-subnet2" {
 resource "aws_subnet" "private-subnet3" {
   vpc_id     = aws_vpc.sample-vpc.id
   cidr_block = var.private-subnet-3
+  availability_zone = "us-east-1c"
   tags = {
     Name : "private-subnet3"
     env : "dev"
