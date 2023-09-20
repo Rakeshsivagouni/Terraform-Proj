@@ -23,7 +23,7 @@ resource "aws_instance" "second-instance" {
     associate_public_ip_address = true
     user_data = <<EOF
              #!/bin/bash
-			 sudo yum update -y && sudo yum install -y nginx
+			 sudo yum update -y && sudo yum install -y docker
 			 sudo systemctl start docker
 			 sudo usermod -aG docker ec2-user
 			 sudo docker run -p 8080:80 nginx
