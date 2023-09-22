@@ -5,7 +5,8 @@ resource "aws_instance" "my-ec2" {
   subnet_id                   = aws_subnet.public-subnet1.id
   vpc_security_group_ids      = [aws_security_group.my-sg.id]
   associate_public_ip_address = true
-  user_data = file("docker.sh")
+  #count = 2
+  user_data                   = file("docker.sh")
   tags = {
     Name : "TF-ec2-instance"
     env : "dev"
@@ -36,7 +37,7 @@ resource "aws_instance" "my-ec2" {
   
 }*/
 
-  
+
 resource "aws_security_group" "my-sg" {
   name        = "web-sg"
   description = "Allow TLS inbound traffic"
@@ -75,7 +76,7 @@ resource "aws_security_group" "my-sg" {
     cidr_blocks = ["0.0.0.0/0"]
 
   }
-  
+
 
   egress {
     from_port   = 0
@@ -89,29 +90,29 @@ resource "aws_security_group" "my-sg" {
   }
 }
 resource "aws_security_group" "rds-sg" {
-  name = "db-sg"
+  name   = "db-sg"
   vpc_id = aws_vpc.sample-vpc.id
-   ingress {
+  ingress {
     description = "TLS from VPC"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
-   }
-   egress {
+    cidr_blocks = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  }
+  egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name: "db-sg"
-    env: "dev"
+    Name : "db-sg"
+    env : "dev"
   }
 
-  }
+}
 
-  
+
 
 
 

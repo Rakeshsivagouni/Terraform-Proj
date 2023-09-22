@@ -21,8 +21,7 @@ output "private-subnet3-id" {
   value = aws_subnet.private-subnet3.id
 }
 
-
-output "ec2-ip" {
+/*output "ec2-ip" {
   value = aws_instance.my-ec2.public_ip
 
-}
+}*/
