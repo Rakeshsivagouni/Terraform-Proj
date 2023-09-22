@@ -1,3 +1,13 @@
+terraform {
+  required_version = ">=0.12"
+  backend "s3" {
+    bucket = "tf-backend-bucket1"
+    key = "myapp/state.tfstate" 
+    region = "us-east-1"
+    profile = "env-admin"
+  }
+}
+
 provider "aws" {
   region  = var.region
   profile = "env-admin"

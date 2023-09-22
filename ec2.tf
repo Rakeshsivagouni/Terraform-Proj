@@ -14,7 +14,7 @@ resource "aws_instance" "my-ec2" {
 
 }
 
-resource "aws_instance" "second-instance" {
+/*resource "aws_instance" "second-instance" {
     ami = var.ami-id
     instance_type = var.instance-type
     key_name = var.key-name
@@ -34,11 +34,11 @@ resource "aws_instance" "second-instance" {
       env: "dev"
     }
   
-}
+}*/
 
   
 resource "aws_security_group" "my-sg" {
-  name        = "Aws-Security-Group"
+  name        = "web-sg"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.sample-vpc.id
 
@@ -88,6 +88,31 @@ resource "aws_security_group" "my-sg" {
     Name = "my-sg"
   }
 }
+resource "aws_security_group" "rds-sg" {
+  name = "db-sg"
+  vpc_id = aws_vpc.sample-vpc.id
+   ingress {
+    description = "TLS from VPC"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
+   }
+   egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    Name: "db-sg"
+    env: "dev"
+  }
+
+  }
+
+  
+
 
 
 
